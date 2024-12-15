@@ -23,7 +23,12 @@ import detalleVentaRoutes from './routes/detalleVenta.routes.js';
 const app = express();
 
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: 
+    ['http://localhost:5173',
+             'http://localhost:5000',
+            process.env.BASE_URL
+
+    ], 
     credentials:true
 }));
 app.use(morgan('dev'));
