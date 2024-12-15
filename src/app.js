@@ -26,7 +26,8 @@ app.use(cors({
     origin: 
     ['http://localhost:5173',
              'http://localhost:5000',
-            process.env.BASE_URL
+            process.env.BASE_URL,
+            process.env.BASE_URL_FRONTEND
 
     ], 
     credentials:true
@@ -44,6 +45,16 @@ app.use('/api', authRoutes);
 app.use('/api', productosRoutes);
 app.use('/api', ventasRoutes);
 app.use('/api', detalleVentaRoutes);
+app.get('/', (req, res)=>{
+    res.json({
+        mensaje: "bienvenidos al API RET de PUNTO DE VENTA",
+        version: "1.0.0",
+        rutasDisponibles:[
+            {endpoint: "/api/register", metodo: "POST", descripcion: "Crea un nuevo usuario"},
+            {endpoint: "/api/login", metodo: "POST", descripcion: "Para iniciar sesion "},
 
+        ]
+    })
 
+})
 export default app;
